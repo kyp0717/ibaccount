@@ -8,29 +8,24 @@ import (
 	// "log"
 	"encoding/json"
 	"github.com/fatih/color"
+	"ibaccount/models"
 )
 
-func GetAccts_xxx() {
+func GetAccts() (models.IbAccounts, error) {
 	url := BaseURL + AcctURL
 	data, _ := IbGet(url)
-	var accts IbAccunts
+	var accts models.IbAccounts
 	json.Unmarshal([]byte(data), &accts)
-	accts.Print()
+	return accts, nil
 }
 
-func GetAccts() ([]byte, error) {
-	url := BaseURL + AcctURL
-	data, err := IbGet(url)
-	return data, err
+func (a IbAccounts) Print() {
+	cyan := color.New(color.FgCyan).SprintFunc()
+	fmt.Printf(" Accounts: %s \n", cyan(a.Accounts))
 }
 
-func setAccts() ([]byte, error) {
+func SetAccts() ([]byte, error) {
 	url := BaseURL + AcctURL
 	data, err := IbPost(url)
 	return data, err
-}
-
-func (a IbAccunts) Print() {
-	cyan := color.New(color.FgCyan).SprintFunc()
-	fmt.Printf(" Accounts: %s \n", cyan(a.Accounts))
 }
