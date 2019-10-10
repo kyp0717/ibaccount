@@ -3,9 +3,8 @@ package cmd
 import (
 
 	//"github.com/davecgh/go-spew/spew"
-	ib "ibx/webapi"
-
 	"github.com/spf13/cobra"
+	ib "ibaccount/client"
 )
 
 var AcctSetCmd = &cobra.Command{

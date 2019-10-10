@@ -1,7 +1,7 @@
 /******
 
 *****/
-package accounts
+package client
 
 import (
 	"fmt"
@@ -11,15 +11,16 @@ import (
 	"ibaccount/models"
 )
 
-func GetAccts() (models.IbAccounts, error) {
+// return a list of accounts based on the login session
+func GetAccts() (models.AccountList, error) {
 	url := BaseURL + AcctURL
 	data, _ := IbGet(url)
-	var accts models.IbAccounts
+	var accts models.AccountList
 	json.Unmarshal([]byte(data), &accts)
 	return accts, nil
 }
 
-func (a IbAccounts) Print() {
+func (a models.AccountList) Print() {
 	cyan := color.New(color.FgCyan).SprintFunc()
 	fmt.Printf(" Accounts: %s \n", cyan(a.Accounts))
 }

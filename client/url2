@@ -1,7 +1,0 @@
-client/account/account_client.go:		PathPattern:        "/iserver/accounts",
-client/account/account_client.go:		PathPattern:        "/portfolio/{accountId}/ledger",
-client/account/account_client.go:		PathPattern:        "/portfolio/{accountId}/meta",
-client/account/account_client.go:		PathPattern:        "/portfolio/{accountId}/summary",
-client/account/account_client.go:		PathPattern:        "/portfolio/accounts",
-client/account/account_client.go:		PathPattern:        "/portfolio/subaccounts",
-client/account/account_client.go:		PathPattern:        "/iserver/account",

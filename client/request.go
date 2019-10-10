@@ -1,7 +1,7 @@
 /******
 
 *****/
-package accounts
+package client
 
 import (
 	"fmt"

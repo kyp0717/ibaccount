@@ -17,7 +17,8 @@ var rootCmd = &cobra.Command{
 	Short: "retrieve list of IB accounts",
 	Long:  `A longer  Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		getAccts()
+		list := GetAccts()
+		list.Print()
 	},
 }
 
@@ -63,15 +64,4 @@ func initConfig() {
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
 	}
-}
-
-func getAccts() ([]byte, error) {
-	url := BaseURL + AcctURL
-	data, err := IbGet(url)
-	return data, err
-}
-
-func (a IbAccounts) Print() {
-	cyan := color.New(color.FgCyan).SprintFunc()
-	fmt.Printf(" Accounts: %s \n", cyan(a.Accounts))
 }
