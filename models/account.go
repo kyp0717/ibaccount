@@ -3,18 +3,12 @@
 package models
 
 import (
+	"strconv"
+
 	"github.com/go-openapi/errors"
 	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"strconv"
 )
-
-type AccountList struct {
-	Accounts []string `json:"accounts"`
-	Aliases  struct {
-	} `json:"aliases"`
-	SelectedAccount string `json:"selectedAccount"`
-}
 
 // Account account information
 // swagger:model account
