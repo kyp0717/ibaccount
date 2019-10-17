@@ -2,12 +2,11 @@ package cmd
 
 import (
 	"fmt"
-
 	"github.com/spf13/cobra"
-
+	"ibaccount/client"
+	//"ibaccount/models"
 	// "log"
 	"encoding/json"
-
 	"github.com/fatih/color"
 )
 
@@ -21,24 +20,24 @@ type RespAccountList struct {
 }
 
 // getstatusCmd represents the getstatus command
-var getAcctCmd = &cobra.Command{
-	Use:   "accounts",
+var listAcctCmd = &cobra.Command{
+	Use:   "list",
 	Short: "retrieve list of IB accounts",
 	Long:  `A longer description that spans mult`,
 	Run: func(cmd *cobra.Command, args []string) {
-		resp := getAccts()
+		resp, _ := listAccts()
 		resp.Print()
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(getAcctCmd)
+	rootCmd.AddCommand(listAcctCmd)
 }
 
 // GetAccts -- return a list of accounts based on the login session
-func GetAccts() (RespAccountList, error) {
-	url := BaseURL + AcctURL
-	data, _ := IbGet(url)
+func listAccts() (RespAccountList, error) {
+	url := client.BaseUrl + client.Accts
+	data, _ := client.IbGet(url)
 	var accts RespAccountList
 	json.Unmarshal([]byte(data), &accts)
 	return accts, nil

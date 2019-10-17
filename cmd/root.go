@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/fatih/color"
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -17,8 +16,6 @@ var rootCmd = &cobra.Command{
 	Short: "retrieve list of IB accounts",
 	Long:  `A longer  Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		list := GetAccts()
-		list.Print()
 	},
 }
 
