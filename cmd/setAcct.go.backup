@@ -1,0 +1,63 @@
+package cmd
+
+import (
+
+	//"github.com/davecgh/go-spew/spew"
+	ib "ibaccount/client"
+
+	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
+	"github.com/spf13/cobra"
+)
+
+// SetAccount set account
+// swagger:model set-account
+type SetAccount struct {
+	// Account ID
+	AcctID string `json:"acctId,omitempty"`
+}
+
+// Validate validates this set account
+func (m *SetAccount) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *SetAccount) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *SetAccount) UnmarshalBinary(b []byte) error {
+	var res SetAccount
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+var AcctSetCmd = &cobra.Command{
+	Use:   "set",
+	Short: "retrieve list of IB accounts",
+	Long:  `A longer description that spans mult`,
+	Run: func(cmd *cobra.Command, args []string) {
+		ib.SetAcct(ib.UrlAcctList)
+
+	},
+}
+
+func init() {
+	rootCmd.AddCommand(AccountCmd)
+	rootCmd.AddCommand(setAcctCmd)
+	AccountCmd.AddCommand(getAcctListCmd)
+}
+
+func setAccts() ([]byte, error) {
+	url := BaseURL + AcctURL
+	data, err := IbPost(url)
+	return data, err
+}
